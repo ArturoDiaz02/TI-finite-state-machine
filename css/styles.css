@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,300;1,100&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    background-color: #00194D;
+}
+
+button{
+    border: 10px;
+    border-color: black;
+}
+
+.box{
+    padding: 0px;
+    overflow: hidden;
+}
+
+.exitBtn{
+    position: absolute;
+    z-index: 1;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    border-radius: 50pt;
+}
+
+.tableEdit{
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+#partitionMachine{
+    padding: 20px;
+}
+
+.hero {
+    background-color: #00194D;
+    position: relative;
+    align-content: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero__title {
+    color: #fff;
+    font-size: 50px;
+
+}
