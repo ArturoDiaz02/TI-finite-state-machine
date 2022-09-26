@@ -47,6 +47,7 @@ export function responseTableMealy()  {
     for (let i = 0; i < machineMealy['stimulus'].length; i++) {
         html += '<th class="tableEdit">' + machineMealy['stimulus'][i] + "</th>";
     }
+
     html += "</thead><tbody>";
 
     for (let i = 0; i < Object.keys(machineMealy['statesMachine']).length; i++) {
@@ -96,16 +97,17 @@ export function getConnectedMealy()  {
     if (!cp.compareArrays(connectedStates, states)) {
         for (let j = 0; j < states.length; j++) {
             if (!(connectedStates.includes(states[j]))) {
+
                 delete machineMealy['statesMachine'][states[j]];
             }
         }
     }
+
+
 }
 
 export function equalResponseMealyStates(stateA, stateB){
     let equalResponse = true;
-    console.log(stateA);
-    console.log(stateB);
     const stimulus = machineMealy['stimulus'];
 
     for (const s in stimulus) {
@@ -133,7 +135,7 @@ export function createMealyTable(states, inputs){
         html += "<tr><th>" + states[i] + "</th>";
 
         for (let j = 0; j < inputs.length; j++) {
-            html += '<td><input type="text" id=' + states[i] + inputs[j] + '></td>';
+            html += '<td><input class="align-items-center" type="text" id=' + states[i] + inputs[j] + '></td>';
         }
 
         html += "</tr>";
