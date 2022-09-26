@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,300;1,100&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+
 body{
     font-family: 'Montserrat', sans-serif;
     color: #ffffff;
-    background-color: #00194D;
+    background-color: #000000;
+    
 }
 
 button{
@@ -34,7 +36,7 @@ button{
 }
 
 .hero {
-    background-color: #00194D;
+    background-color: #000000;
     position: relative;
     align-content: center;
     height: 100vh;

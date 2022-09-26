@@ -3,7 +3,7 @@ import * as c from './controler.js';
 
 export var machineMealy = {
     initialState: 'A',
-    stymulus: [0, 1],
+    stimulus: [0, 1],
     statesMachine: {
         'A': {
             0: {
@@ -21,7 +21,7 @@ export var machineMealy = {
  */
 export function getInitialMachine(states, inputs){
     let machine = machineMealy;
-    machine.stymulus = inputs;
+    machine.stimulus = inputs;
     machine.statesMachine = {};
     machine.initialState = states[0];
     for(let i = 0; i < states.length; i++){
@@ -44,18 +44,18 @@ export function responseTableMealy()  {
     let html = '';
     html += '<table class="tableEdit" "id="tableResponse"><thead><th class="tableEdit"></th>';
 
-    for (let i = 0; i < machineMealy['stymulus'].length; i++) {
-        html += '<th class="tableEdit">' + machineMealy['stymulus'][i] + "</th>";
+    for (let i = 0; i < machineMealy['stimulus'].length; i++) {
+        html += '<th class="tableEdit">' + machineMealy['stimulus'][i] + "</th>";
     }
     html += "</thead><tbody>";
 
     for (let i = 0; i < Object.keys(machineMealy['statesMachine']).length; i++) {
         html += '<tr class="tableEdit"><th>' + Object.keys(machineMealy["statesMachine"])[i] + '</th>';
 
-        for (let j = 0; j < machineMealy['stymulus'].length; j++) {
+        for (let j = 0; j < machineMealy['stimulus'].length; j++) {
             const actualState = Object.keys(machineMealy['statesMachine'])[i];
-            let nextStatePrint = machineMealy['statesMachine'][actualState][machineMealy['stymulus'][j]]['nextState'];
-            let responsePrint = machineMealy['statesMachine'][actualState][machineMealy['stymulus'][j]]['response'];
+            let nextStatePrint = machineMealy['statesMachine'][actualState][machineMealy['stimulus'][j]]['nextState'];
+            let responsePrint = machineMealy['statesMachine'][actualState][machineMealy['stimulus'][j]]['response'];
             html += '<td class="tableEdit"  >' + nextStatePrint + ',' + responsePrint + '</td>';
         }
 
@@ -66,23 +66,23 @@ export function responseTableMealy()  {
 }
 
 
-export function getConexusMealy()  {
+export function getConnectedMealy()  {
     const connectedStates = [];
     const initialState = machineMealy['initialState'];
     const states = Object.keys(machineMealy['statesMachine']);
-    const stymulus = machineMealy['stymulus'];
+    const stimulus = machineMealy['stimulus'];
 
     connectedStates.push(initialState);
     let c = 0;
 
     while (c < connectedStates.length) {
         const connected = connectedStates[c];
-        for (const s in stymulus) {
-            const stymul = stymulus[s];
+        for (const s in stimulus) {
+            const st = stimulus[s];
             let currentState = connected;
             let i = 0;
             do {
-                const nextState = machineMealy['statesMachine'][currentState][stymul]['nextState'];
+                const nextState = machineMealy['statesMachine'][currentState][st]['nextState'];
                 if (!connectedStates.includes(nextState)) {
                     connectedStates.push(nextState);
                 }
@@ -102,15 +102,14 @@ export function getConexusMealy()  {
     }
 }
 
-//stateA, stateB are dicts
 export function equalResponseMealyStates(stateA, stateB){
     let equalResponse = true;
     console.log(stateA);
     console.log(stateB);
-    const stymulus = machineMealy['stymulus'];
+    const stimulus = machineMealy['stimulus'];
 
-    for (const s in stymulus) {
-        equalResponse = equalResponse && (stateA[stymulus[s]]['response'] === stateB[stymulus[s]]['response']);
+    for (const s in stimulus) {
+        equalResponse = equalResponse && (stateA[stimulus[s]]['response'] === stateB[stimulus[s]]['response']);
     }
 
     return equalResponse;
@@ -142,28 +141,28 @@ export function createMealyTable(states, inputs){
     html += "</tbody></table>";
 
     return html;
-};
+}
 
 /**
  * This method is in charge of reassigning the names to the final partition of Mealy.
  * @param {Object} machine Object containing the Mealy machine from dictionaries and arrays
  * @param {Array} finalPartition final partition of machine Mealy
  */
-export function reasignStatesMealy(machine, finalPartition) {
+export function reassignStatesMealy(machine, finalPartition) {
     const states = Object.keys(machine['statesMachine']);
 
     for(const s in states){
         const state = states[s];
-        const represent = c.getRepresentant(finalPartition, state);
+        const represent = c.getRep(finalPartition, state);
 
         if(state === represent){
-            for (let j = 0; j < machine['stymulus'].length; j++) {
-                const stymul = machine['stymulus'][j];
-                const currentNextState = machine['statesMachine'][state][stymul]['nextState'];
-                const representNextState = c.getRepresentant(finalPartition, currentNextState);
+            for (let j = 0; j < machine['stimulus'].length; j++) {
+                const st = machine['stimulus'][j];
+                const currentNextState = machine['statesMachine'][state][st]['nextState'];
+                const representNextState = c.getRep(finalPartition, currentNextState);
 
                 if(!(representNextState === currentNextState)){
-                    machine['statesMachine'][state][stymul]['nextState'] = representNextState;
+                    machine['statesMachine'][state][st]['nextState'] = representNextState;
                 }
             }
         }else{

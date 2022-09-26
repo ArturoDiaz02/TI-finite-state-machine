@@ -3,7 +3,7 @@ import * as c from './controler.js';
 
 export var machineMoore = {
     initialState: 'A',
-    stymulus: [0,1],
+    stimulus: [0,1],
     statesMachine: {
         'A': {
             response: 'A',
@@ -20,9 +20,9 @@ export var machineMoore = {
  * @param {array} states all the states of the machine Moore
  * @param {array} inputs all the inputs of the machine Moore
  */
-export function getInitialmachineMoore(states,inputs){
+export function getInitialMachineMoore(states, inputs){
     machineMoore = {};
-    machineMoore.stymulus = inputs;
+    machineMoore.stimulus = inputs;
     machineMoore.statesMachine = {};
     machineMoore['initialState'] = states[0];
     for(let i = 0; i < states.length; i++){
@@ -45,9 +45,9 @@ export function responseTableMoore(){
     let html = '';
     html += '<table class="tableEdit" "id="tableResponse"><thead><th class="tableEdit"></th>';
 
-    for(let i = 0; i<machineMoore['stymulus'].length; i++){
-        html += '<th class="tableEdit">'+machineMoore['stymulus'][i]+"</th>";
-        if(i == machineMoore['stymulus'].length-1){
+    for(let i = 0; i<machineMoore['stimulus'].length; i++){
+        html += '<th class="tableEdit">'+machineMoore['stimulus'][i]+"</th>";
+        if(i === machineMoore['stimulus'].length-1){
             html += "<th>Response</th>"
         }
     }
@@ -56,12 +56,12 @@ export function responseTableMoore(){
     for(let i = 0; i<Object.keys(machineMoore['statesMachine']).length; i++){
         html += '<tr class="tableEdit"><th>'+Object.keys(machineMoore["statesMachine"])[i]+'</th>';
 
-        for(let j = 0; j<machineMoore['stymulus'].length; j++){
+        for(let j = 0; j<machineMoore['stimulus'].length; j++){
             const actualState = Object.keys(machineMoore['statesMachine'])[i];
-            let nextStatePrint = machineMoore['statesMachine'][actualState]['statesResponse'][machineMoore['stymulus'][j]];
+            let nextStatePrint = machineMoore['statesMachine'][actualState]['statesResponse'][machineMoore['stimulus'][j]];
             html += '<td class="tableEdit"  >'+nextStatePrint+'</td>';
 
-            if(j == machineMoore['stymulus'].length-1){
+            if(j === machineMoore['stimulus'].length-1){
                 let responsePrint = machineMoore['statesMachine'][actualState]['response'];
                 html += '<td class="tableEdit" >'+responsePrint +'</td>'
             }
@@ -75,34 +75,36 @@ export function responseTableMoore(){
 
 }
 
-export function getConexusMoore() {
+export function getConnectedMoore() {
     const connectedStates = [];
     const initialState = machineMoore['initialState'];
     const states = Object.keys(machineMoore['statesMachine']);
-    const stymulus = machineMoore['stymulus'];
-
+    const stimulus = machineMoore['stimulus'];
     connectedStates.push(initialState);
-    console.log(connectedStates);
+
     let c = 0;
 
     while(c < connectedStates.length){
         const connected = connectedStates[c];
-        console.log(connected);
-        for(const s in stymulus){
-            const stymul = stymulus[s];
+
+        for(const s in stimulus){
+            const st = stimulus[s];
             let currentState = connected;
-            console.log(currentState);
             let i = 0;
 
             do{
-                const nextState = machineMoore['statesMachine'][currentState]['statesResponse'][stymul];
+                const nextState = machineMoore['statesMachine'][currentState]['statesResponse'][st];
+
                 if(!connectedStates.includes(nextState)){
                     connectedStates.push(nextState);
                 }
+
                 currentState = nextState;
                 i++;
+
             } while(i < states.length);
         }
+
         c++;
     }
 
@@ -119,19 +121,19 @@ export function getConexusMoore() {
  * This method is in charge of reassigning the names to the final partition of Moore.
  * @param {Array} finalPartition final partition of machine Moore
  */
-export function reasignStatesMoore(finalPartition){
+export function reassignStatesMoore(finalPartition){
     for(const state in machineMoore['statesMachine']){
-        const represent = c.getRepresentant(finalPartition, state);
+        const represent = c.getRep(finalPartition, state);
 
         if(state === represent){
-            for(let j = 0; j < machineMoore['stymulus'].length; j++){
-                const stymul = machineMoore['stymulus'][j];
+            for(let j = 0; j < machineMoore['stimulus'].length; j++){
+                const st = machineMoore['stimulus'][j];
 
-                const currentNextState = machineMoore['statesMachine'][state]['statesResponse'][stymul];
-                const representNextState = c.getRepresentant(finalPartition, currentNextState);
+                const currentNextState = machineMoore['statesMachine'][state]['statesResponse'][st];
+                const representNextState = c.getRep(finalPartition, currentNextState);
 
                 if(!(representNextState === currentNextState)){
-                    machineMoore['statesMachine'][state]['statesResponse'][stymul] = representNextState;
+                    machineMoore['statesMachine'][state]['statesResponse'][st] = representNextState;
                 }
             }
         }else{
@@ -151,7 +153,7 @@ export function createMooreTable(states, inputs){
 
     for(let i = 0; i<inputs.length; i++){
         html += "<th>"+inputs[i]+"</th>";
-        if(i==inputs.length-1){
+        if(i === inputs.length-1){
             html += "<th>Response</th>"
         }
     }
@@ -162,7 +164,7 @@ export function createMooreTable(states, inputs){
 
         for(let j = 0; j<inputs.length; j++){
             html += '<td><input type="text" id='+states[i]+inputs[j]+'></td>';
-            if(j==inputs.length-1){
+            if(j === inputs.length-1){
                 html += '<td><input type="text" id='+states[i]+'r'+'></td>';
             }
         }
@@ -172,4 +174,15 @@ export function createMooreTable(states, inputs){
     html += "</tbody></table>"
 
     return html;
+}
+
+export function equalResponseMooreStates(stateA, stateB){
+    let equalResponse = true;
+    const stimulus = machineMoore['stimulus'];
+
+    for (const s in stimulus) {
+        equalResponse = equalResponse && (stateA['response'] === stateB['response']);
+    }
+
+    return equalResponse;
 }
