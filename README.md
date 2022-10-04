@@ -19,15 +19,17 @@ _A web application that allows to enter a moore or mealy automata and as a resul
 
 _We used [GitHub](https://github.com/) to the versioned. For all the updates of the software, check the releases [here](https://github.com/ArturoDiaz02/TI-finite-state-machine/releases)._
 
-## <b>_Authors_ ✒️
 
-* _Arturo Diaz - [ArturoDiaz02](https://github.com/ArturoDiaz02)_
 
-## <b>_Documentation And Images_</b> 💬📷
+## <b>_Documentation_</b> 💬
 
-* _Problem [here](https://github.com/ArturoDiaz02/TI-finite-state-machine/blob/master/docs/tarea1IT(22-2).pdf)_ <br>
+* **Manual** [click here](https://github.com/ArturoDiaz02/TI-finite-state-machine/blob/master/docs/Manual.pdf)
+* **Problem** [click here](https://github.com/ArturoDiaz02/TI-finite-state-machine/blob/master/docs/tarea1IT(22-2).pdf) <br>
 ```
 ./docs/
 ```
 ---
-⌨️ with ❤️ [ArturoDiaz02](https://github.com/ArturoDiaz02) 😊<br>
+## <b>_Authors_ ✒️
+
+* _Arturo Diaz - [ArturoDiaz02](https://www.linkedin.com/in/carlos-arturo-diaz-artiaga-697625119/)_
+

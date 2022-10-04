@@ -13,7 +13,7 @@
     <div class="container-fluid box" >
         <div class="view hero m-0 vh-100 vw-100 row justify-content-center align-items-center" id="homePane">
             <div class="col-auto p-5 text-center">
-                <div class="hero__title"><b>Automatas</b></div>
+                <div class="hero__title"><b>AutoMats</b></div>
                 <button class="btn btn-secondary" id="mealyBtn">MEALY</button>
                 <button class="btn btn-secondary" id="mooreBtn">MOORE</button>
             </div>
@@ -30,14 +30,14 @@
             <button type="button" class="btn btn-secondary exitBtn">exit</button>
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="col-md-4 col-sm-6 text-center">
-                    <h1>AUTOMATA DE MEALY</h1>
-                    <p>Ingrese los posibles estados y entradas separadas por comas, el primer estado que ingrese sera tomado como el estado inical</p>
+                    <h1>MEALY AUTOMAT</h1>
+                    <p>Enter the possible states and entries separated by commas, the first state you enter will be taken as the initial state</p>
                     <form>
                         <div>
-                            <input type="text" id="statesMealy" class="form-control" placeholder="estados" required autofocus>
+                            <input type="text" id="statesMealy" class="form-control" placeholder="states" required autofocus>
                         </div>
                         <div>
-                            <input type="text" id="inputsMealy" class="form-control mt-4" placeholder="entradas">
+                            <input type="text" id="inputsMealy" class="form-control mt-4" placeholder="alphabet">
                         </div>
                         
                         <button type="button" class="mt-4 btn btn-secondary" id="submitBtnMealy">send</button>
@@ -50,7 +50,7 @@
             <button type="button" class="btn btn-secondary exitBtn">exit</button>
             <div class="vh-100 row justify-content-center align-items-center">
                 <div class="col-auto text-center" >
-                    <span>Por favor ingrese el Estado y seguido de una coma la respuesta de estímulo</span>
+                    <span>Please enter the State and followed by a comma the stimulus response</span>
                     <div class="row" id="tableMealy"></div>
                     <button type="button" id="submitTableMealy" class="mt-4 btn-sm btn btn-secondary">Submit Info</button>
                 </div>
@@ -62,16 +62,15 @@
             <button type="button" class="btn btn-secondary exitBtn">exit</button>
             <div class="row justify-content-center align-items-center vh-100">
                 <div class="col-md-4 col-sm-6 text-center">
-                    <h1>AUTOMATA DE MOORE</h1>
+                    <h1>MOORE AUTOMAT</h1>
                     </p>
-                    <p>Ingrese los posibles estados y entradas separadas por comas, el primer estado que ingrese sera tomado como el estado inical
-                    </p>
+                    <p>Enter the possible states and entries separated by commas, the first state you enter will be taken as the initial state</p>
                     <form>
                         <div>
-                            <input type="text" id="statesMoore" class="form-control" placeholder="estados" required autofocus>
+                            <input type="text" id="statesMoore" class="form-control" placeholder="states" required autofocus>
                         </div>
                         <div>
-                            <input type="text" id="inputsMoore" class="form-control mt-4" placeholder="entradas">
+                            <input type="text" id="inputsMoore" class="form-control mt-4" placeholder="alphabet">
                         </div>
                         
                         <button type="button" class="mt-4 btn btn-secondary" id="submitBtnMoore">send</button>
@@ -84,7 +83,7 @@
             <button type="button" class="btn btn-secondary exitBtn">exit</button>
             <div class="vh-100 row justify-content-center align-items-center">
                 <div class="col-auto text-center">
-                    <span>Por favor ingrese el Estado al cual sera guiado y ademas de esto las respuestas <br>asociadas a cada uno de los estados</span>
+                    <span>Please enter the State to which you will be guided and in addition to this the answers <br>associated with each of the states</span>
                     <div class="row" id="tableMoore"></div>
                     <button type="button" id="submitTableMoore" class="mt-4 btn-sm btn btn-secondary">Submit Info</button>
                 </div>
@@ -96,7 +95,7 @@
             <div class="vh-100 row justify-content-center align-items-center">
                 <div class="col-auto text-center">
                     <div id="partitionMachine"></div>
-                    <h1>TABLA REDUCIDA</h1>
+                    <h1>REDUCED CONNECTED AUTOMATA</h1>
                     <div class="row justify-content-center align-items-center" id="tableResponse"></div>
                 </div>
             </div>

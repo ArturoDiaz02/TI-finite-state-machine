@@ -142,8 +142,8 @@ function reduceMooreMachine(machine){
  * @returns {String} html code with the necessary code to display the initial and final partition
  */
 function showPartitions(firstPartition, finalPartition){
-    let html = '<h4>Primer partition:</h4>' + firstPartition;
-    html += '<br><h4>Particion final:</h4>'+finalPartition +'<br>';
+    let html = '<h4>First partition:</h4>' + firstPartition;
+    html += '<br><h4>Final partition:</h4>'+finalPartition +'<br>';
     return html;
 }
 
